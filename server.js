@@ -1,4 +1,6 @@
 const express = require('express')
+const cluster = require('cluster')
+const os = require('os')
 const app = express()
 const port = 3000
 const cors = require('cors');
