@@ -13,7 +13,7 @@ app.use(cors());
 
 app.get('/', (req, res) => {
     res.send(`Hello There! from ${process.pid}`)
-    cluster.worker.kill();
+    // cluster.worker.kill();
 })
 
 if (cluster.isMaster) {
@@ -21,7 +21,7 @@ if (cluster.isMaster) {
         cluster.fork();
     }
     cluster.on('exit', (worker, code, signal) => {
-        console.log(`Worker ${process.pid} killed`)
+        // console.log(`Worker ${process.pid} killed`)
         cluster.fork()
     })
 }
