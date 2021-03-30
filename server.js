@@ -20,6 +20,9 @@ if (cluster.isMaster) {
     for (let i = 0; i < cpus; i++) {
         cluster.fork();
     }
+    cluster.on('exit', (worker, code, signal) => {
+        console.log(`Worker ${process.pid} killed`)
+    })
 }
 
 else {
