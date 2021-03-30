@@ -12,9 +12,21 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/', (req, res) => {
-  res.send('Hello There!')
+    res.send('Hello There!')
 })
 
-app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`)
-})
+if (cluster.isMaster) {
+    for (let i = 0; i < cpus; i++) {
+        cluster.fork();
+    }
+}
+
+else {
+    app.listen(port, () => {
+        console.log(`Server ${process.pid} listening at http://localhost:${port}`)
+    })
+}
+
+// app.listen(port, () => {
+//   console.log(`Server listening at http://localhost:${port}`)
+// })
