@@ -13,6 +13,7 @@ app.use(cors());
 
 app.get('/', (req, res) => {
     res.send(`Hello There! from ${process.pid}`)
+    cluster.worker.kill();
 })
 
 if (cluster.isMaster) {
