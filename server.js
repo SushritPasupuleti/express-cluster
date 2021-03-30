@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/', (req, res) => {
-    res.send('Hello There! from ${process.pid}')
+    res.send(`Hello There! from ${process.pid}`)
 })
 
 if (cluster.isMaster) {
